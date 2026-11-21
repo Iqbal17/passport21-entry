@@ -609,12 +609,12 @@ def draw(cv):
     field(cv, fx, 332, "APELIDO / SURNAME", "ROCHA", 16.5)
     field(cv, fx, 384, "NOMES / GIVEN NAMES", "TOMAS AURELIO", 15)
     field(cv, fx, 436, "NACIONALIDADE / NATIONALITY", "CALDERAN", 14.5)
-    field(cv, fx, 486, "NASCIMENTO / DATE OF BIRTH", "02 FEB 1988",
+    field(cv, fx, 486, "NASCIMENTO / BIRTH", "02 FEB 1988",
           12.5)
-    field(cv, 404, 486, "SEXO / SEX", "M", 12.5)
+    field(cv, 408, 486, "SEXO / SEX", "M", 12.5)
     field(cv, fx, 538, "NATURALIDADE / PLACE OF BIRTH", "PORTO CALDEIRA",
           13.5)
-    field(cv, fx, 588, "EMISSAO / DATE OF ISSUE", "14 MAR 2021", 11.2)
+    field(cv, fx, 588, "EMISSAO / ISSUE", "14 MAR 2021", 11.2)
     field(cv, 362, 588, "VALIDADE / EXPIRY", "14 MAR 2031", 11.2)
     draw_text(cv, fx, 640, "AUTORIDADE / AUTHORITY", 8, LABEL, sp=1.6)
     draw_text(cv, fx, 651, "MINISTRY OF THE INTERIOR", 10.5, INKD,
