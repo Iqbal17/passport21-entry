@@ -552,20 +552,20 @@ def page_base(cv, x0):
                   (188, 208, 200), 0.30, 0.9)
         wave_band(cv, x0 + 14, x0 + 458, yy + 13, 7, 131, i * 0.7 + 2.0,
                   (196, 204, 220), 0.26, 0.9)
-    draw_emblem(cv, x0 + 236, 512, 300, (110, 132, 148), 0.055, 3.2)
+    draw_emblem(cv, x0 + 236, 512, 300, (110, 132, 148), 0.04, 2.4)
     rect_outline(cv, x0 + 12, 76, 448, 872, (172, 162, 142), 1.0, 0.55)
 
 
 def draw(cv):
     # desk
     fill_rect(cv, 0, 0, W, H, (59, 52, 47))
-    grain(cv, 0, 0, W, H, 0.05)
+    grain(cv, 0, 0, W, H, 0.03)
     # booklet shadow and pages
     fill_rect(cv, 54, 78, 944, 896, (24, 20, 18), 0.5)
     fill_rect(cv, 48, 70, 944, 896, (30, 26, 23), 0.35)
     fill_rect(cv, 40, 64, 472, 896, (246, 241, 228))
     fill_rect(cv, 512, 64, 472, 896, (244, 239, 225))
-    grain(cv, 40, 64, 984, 960, 0.028)
+    grain(cv, 40, 64, 984, 960, 0.018)
     page_base(cv, 40)
     page_base(cv, 512)
     # spine gutter and stitching
@@ -591,8 +591,8 @@ def draw(cv):
               LABEL, sp=1.6, align="c")
 
     # ghost image behind the fields
-    ghost = make_portrait(96, 122)
-    blit(cv, ghost, 384, 300, 0.13)
+    ghost = make_portrait(84, 106)
+    blit(cv, ghost, 394, 452, 0.09)
 
     # photo
     photo = make_portrait(150, 190)
@@ -603,27 +603,29 @@ def draw(cv):
         circle_outline(cv, 196, 300, rr, cc, 1.1, 0.28)
 
     fx = 234
-    field(cv, fx, 282, "TIPO / TYPE", "P", 14)
-    field(cv, 300, 282, "COD. / CODE", "CDR", 14)
-    field(cv, 372, 282, "PASSAPORTE NO.", "C0477215", 14, (140, 26, 26))
+    field(cv, fx, 282, "TIPO", "P", 13.5)
+    field(cv, 282, 282, "CODIGO", "CDR", 13.5)
+    field(cv, 352, 282, "PASSAPORTE NO.", "C0477215", 13, (140, 26, 26))
     field(cv, fx, 332, "APELIDO / SURNAME", "ROCHA", 16.5)
     field(cv, fx, 384, "NOMES / GIVEN NAMES", "TOMAS AURELIO", 15)
     field(cv, fx, 436, "NACIONALIDADE / NATIONALITY", "CALDERAN", 14.5)
-    field(cv, fx, 486, "DATA DE NASCIMENTO / DATE OF BIRTH", "02 FEB 1988",
-          13.5)
-    field(cv, 396, 486, "SEXO / SEX", "M", 13.5)
+    field(cv, fx, 486, "NASCIMENTO / DATE OF BIRTH", "02 FEB 1988",
+          12.5)
+    field(cv, 404, 486, "SEXO / SEX", "M", 12.5)
     field(cv, fx, 538, "NATURALIDADE / PLACE OF BIRTH", "PORTO CALDEIRA",
           13.5)
-    field(cv, fx, 588, "EMISSAO / DATE OF ISSUE", "14 MAR 2021", 13.5)
-    field(cv, 372, 588, "VALIDADE / EXPIRY", "14 MAR 2031", 13.5)
-    field(cv, fx, 640, "AUTORIDADE / AUTHORITY",
-          "MINISTRY OF THE INTERIOR", 11.5)
+    field(cv, fx, 588, "EMISSAO / DATE OF ISSUE", "14 MAR 2021", 11.2)
+    field(cv, 362, 588, "VALIDADE / EXPIRY", "14 MAR 2031", 11.2)
+    draw_text(cv, fx, 640, "AUTORIDADE / AUTHORITY", 8, LABEL, sp=1.6)
+    draw_text(cv, fx, 651, "MINISTRY OF THE INTERIOR", 10.5, INKD,
+              sp=1.5, weight=1.4)
     draw_text(cv, fx, 692, "ASSINATURA DO TITULAR / HOLDER'S SIGNATURE",
               7.2, LABEL, sp=1.4)
-    sig = [(238 + i * 3.1, 716 + 7 * math.sin(i * 0.55) - i * 0.12)
-           for i in range(52)]
+    sig = [(238 + i * 3.1, 714 + 8 * math.sin(i * 0.5) * math.sin(i / 51.0
+           * math.pi) - i * 0.1) for i in range(52)]
     polyline(cv, sig, (24, 40, 110), 1.7, 0.9)
-    line(cv, 238, 724, 268, 706, (24, 40, 110), 1.5, 0.9)
+    line(cv, 238, 726, 272, 704, (24, 40, 110), 1.5, 0.85)
+    line(cv, 300, 720, 340, 712, (24, 40, 110), 1.3, 0.7)
 
     draw_emblem(cv, 276, 786, 44, NAVY, 0.4, 1.4)
     draw_text(cv, 276, 822, "ESTE PASSAPORTE CONTEM 32 PAGINAS", 7.2,
@@ -633,8 +635,8 @@ def draw(cv):
 
     # MRZ
     l1, l2 = build_mrz()
-    draw_text(cv, 71, 872, l1, 13.6, (24, 24, 26), sp=1.62, weight=1.5)
-    draw_text(cv, 71, 902, l2, 13.6, (24, 24, 26), sp=1.62, weight=1.5)
+    draw_text(cv, 73, 878, l1, 11, (24, 24, 26), sp=0.55, weight=1.3)
+    draw_text(cv, 73, 904, l2, 11, (24, 24, 26), sp=0.55, weight=1.3)
 
     # laminate sheen over the data page
     fill_poly(cv, [(150, 64), (300, 64), (120, 960), (40, 960),
@@ -675,12 +677,12 @@ def draw(cv):
                 ("PORT SEREIN - NO. V-88113", 26, 8.2, 1.4),
                 ("ROCHA / TOMAS AURELIO", 48, 8.2, 1.4)], -3,
                fill=(238, 245, 241))
-    rect_stamp(cv, 748, 436, 172, 76, TEAL,
+    rect_stamp(cv, 726, 442, 172, 76, TEAL,
                [("PORT SEREIN", -20, 9.5, 1.8), ("ENTERED", -2, 10.5, 2.2),
                 ("28 OCT 2024", 16, 9.5, 1.6)], 2, double=False)
 
     # travel history in stamps
-    round_stamp(cv, 872, 458, 74, BLUE, "REPUBLICA DA CALDEIRA",
+    round_stamp(cv, 884, 450, 72, BLUE, "REPUBLICA DA CALDEIRA",
                 "PORTO CALDEIRA",
                 [("SAIDA", -6, 11, 2.4), ("DEPARTURE", 8, 7.6, 1.8),
                  ("03 JUN 2023", 24, 12, 1.6)], 5, symbol="anchor")
@@ -699,9 +701,9 @@ def draw(cv):
                 ("02 NOV 2024", 14, 10, 1.6)], -2)
     round_stamp(cv, 866, 890, 58, GREEN, "THE MARROW ISLANDS",
                 "KINGSTON ROADS",
-                [("ARRIVAL", -12, 9.5, 1.8), ("11 APR 2025", 3, 10.5, 1.4)],
+                [("ARRIVAL", -13, 9.5, 1.8), ("11 APR 2025", 2, 10.5, 1.4)],
                 6)
-    rect_stamp(cv, 646, 892, 178, 76, GREEN,
+    rect_stamp(cv, 646, 884, 178, 76, GREEN,
                [("KINGSTON ROADS", -20, 9, 1.6), ("DEPARTURE", -2, 10, 2.0),
                 ("19 APR 2025", 16, 9.5, 1.5)], -5, double=False)
 
